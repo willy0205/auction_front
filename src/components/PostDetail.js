@@ -192,7 +192,7 @@ function PostDetail({ post: initialPost, onClose }) {
   // 초기 댓글 로드
   useEffect(() => {
     loadComments();
-  }, []);
+  }, [loadComments]);
 
   // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(() => {
@@ -203,23 +203,6 @@ function PostDetail({ post: initialPost, onClose }) {
       loadComments();
     }
   }, [loadComments, isLoading]);
-
-  // 답글 로드
-  const loadReplies = async (commentId) => {
-    try {
-      const result = await postApi.getCommentReplies(post.id, commentId);
-      // 댓글 목록 업데이트
-      setComments(prevComments => 
-        prevComments.map(comment => 
-          comment.id === commentId 
-            ? { ...comment, replies: result.replies }
-            : comment
-        )
-      );
-    } catch (error) {
-      console.error('Failed to load replies:', error);
-    }
-  };
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

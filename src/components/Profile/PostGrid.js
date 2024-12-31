@@ -10,30 +10,31 @@ import {
 } from '../../styles/profile.styles';
 
 function PostGrid({ posts, onPostClick }) {
+  if (!posts) return null;
+
   return (
     <Grid>
-      {posts?.map((post) => {
-        const totalComments = post.comments.reduce((total, comment) => {
-          return total + 1 + (comment.replies?.length || 0);
-        }, 0);
+      {posts.map((post) => {
+        const firstImage = post.images?.[0] || 'https://via.placeholder.com/400';
+        const hasMultipleImages = post.images?.length > 1;
 
         return (
           <PostGridItem 
             key={post.id} 
             onClick={() => onPostClick(post)}
           >
-            <PostImage src={post.images[0]} alt="" />
+            <PostImage src={firstImage} alt="" />
             <PostOverlay className="overlay">
               <PostStat>
                 <LikeIcon size={20} color="white" />
-                <StatValue>{post.likes}</StatValue>
+                <StatValue>{post.likes || 0}</StatValue>
               </PostStat>
               <PostStat>
                 <CommentIcon size={20} color="white" />
-                <StatValue>{totalComments}</StatValue>
+                <StatValue>{post.commentsCount || 0}</StatValue>
               </PostStat>
             </PostOverlay>
-            {post.images.length > 1 && (
+            {hasMultipleImages && (
               <MultipleImagesWrapper>
                 <MultipleImagesIcon />
               </MultipleImagesWrapper>

@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 import Post from '../components/Post';
 import { mockPosts } from '../mocks/feedData';
-import { postApi } from '../api/postApi';
 
 const HomeContainer = styled.div`
   background-color: #fafafa;

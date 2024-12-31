@@ -120,4 +120,25 @@ export const MultipleImagesWrapper = styled.div`
   right: 12px;
 `;
 
+export const CreatePostButton = styled.button`
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0081d6;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
 // ... 다른 Profile 관련 스타일들 
